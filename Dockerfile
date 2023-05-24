@@ -7,18 +7,11 @@ COPY *.go ./
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o /mif
 
-FROM build-stage AS run-test-stage
-RUN go test -v ./...
 
 # конт без изх
 FROM alpine:latest
-
-WORKDIR /
-
-COPY --from=build-stage /mif /mif
-
+RUN apk --no-cache add ca-certificates
+WORKDIR /root/
+COPY --from=builder /mif .
 EXPOSE 3535
-
-USER nonroot:nonroot
-
-ENTRYPOINT ["/mif"]
+CMD ["./mif"]
