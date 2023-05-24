@@ -11,8 +11,8 @@ FROM build-stage AS run-test-stage
 RUN go test -v ./...
 
 # конт без изх
-FROM alpine:latest
-RUN apk --no-cache add ca-certificates
+FROM gcr.io/distroless/base-debian11 AS build-release-stage
+
 WORKDIR /
 
 COPY --from=build-stage /mif /mif
