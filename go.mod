@@ -1,4 +1,4 @@
-module github.com/olliefr/docker-gs-ping
+module github.com/inf32den/mif-golang-mini
 
 go 1.19
 
