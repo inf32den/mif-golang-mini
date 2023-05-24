@@ -11,7 +11,7 @@ FROM build-stage AS run-test-stage
 RUN go test -v ./...
 
 # конт без изх
-FROM gcr.io/distroless/base-debian11 AS build-release-stage
+FROM alpine:latest
 
 WORKDIR /
 
